@@ -1,6 +1,6 @@
 from .models import Booking, Flight
-from rest_framework.generics import ListAPIView, RetrieveAPIView, UpdateAPIView, CreateAPIView, DestroyAPIView
-from flights.serializers import FlightListSerializer, BookingListSerializer, BookingCreateSerializer, BookingDetailSerializer
+from rest_framework.generics import ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from flights.serializers import FlightListSerializer, BookingListSerializer, BookingUpdateSerializer, BookingDetailSerializer
 
 
 class FlightListView(ListAPIView):
@@ -17,12 +17,9 @@ class BookingDetailView(RetrieveAPIView):
     lookup_field = "id"
     lookup_url_kwarg = "Booking_id"
 
-class CreateBookingView(CreateAPIView):
-    serializer_class = BookingCreateSerializer
-
 class BookingUpdateView(UpdateAPIView):
     queryset = Booking.objects.all()
-    serializer_class = BookingCreateSerializer
+    serializer_class = BookingUpdateSerializer
     lookup_field = "id"
     lookup_url_kwarg = "Booking_id"
 
